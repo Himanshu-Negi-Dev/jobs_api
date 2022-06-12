@@ -29,6 +29,7 @@ userSchema.pre('save', async function(){
 
 userSchema.methods.createJWT = function () {
   const user = {
+    id: this._id,
     name: this.name,
     email: this.email,
   }
@@ -37,7 +38,6 @@ userSchema.methods.createJWT = function () {
 
 userSchema.methods.comparePassword = async function(candidatePassword){
   const isMatch = await bcrypt.compare(candidatePassword, this.password);
-  // console.log(isMatch)
   return isMatch;
 }
 

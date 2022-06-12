@@ -1,5 +1,6 @@
 const express = require('express');
 const { connectDB } = require('./db/connect');
+const { authMiddleware } = require('./middleware/auth');
 const { errorMiddleware } = require('./middleware/errorMiddleware');
 const { authRouter } = require('./routes/auth');
 const { jobRouter } = require('./routes/jobs');
@@ -9,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/jobs/v1/auth', authRouter);
-app.use('/jobs/v1', jobRouter);
+app.use('/jobs/v1', authMiddleware, jobRouter);
 
 app.use(errorMiddleware);
 

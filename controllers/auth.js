@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { CustomErrorAPI } = require("../errors/CustomErrorAPI");
 const { asyncWrapper } = require("../middleware/async");
-const User = require('../models/user');
+const User = require('../models/User');
 
 const login = asyncWrapper(async (req, res) => {
   const { email, password } = req.body;
